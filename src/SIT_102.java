@@ -32,7 +32,7 @@ class HybridPaymentGateway implements UpiGateway, CardPaymentGateway {
         }
     }
 }
-public class Second {
+public class SIT_102 {
     public static void main(String[] args) {
         HybridPaymentGateway gateway = new HybridPaymentGateway();
         gateway.processPayment();

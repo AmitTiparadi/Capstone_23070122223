@@ -10,7 +10,7 @@
 
 import java.util.Scanner;
 
-public class Fifth {
+public class SIT_105 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the Size of the Array:");

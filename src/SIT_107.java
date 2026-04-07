@@ -4,7 +4,7 @@
 
 import java.util.Scanner;
 
-public class Seventh {
+public class SIT_107 {
         public static void main(String[] args) {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter the number of days: ");

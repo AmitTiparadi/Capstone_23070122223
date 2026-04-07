@@ -1,6 +1,6 @@
 // Homework Question: 
 
-public class RotatingMatrix {
+public class SIT_106 {
     public static void main(String[] args) {
         int[][] matrix = {
                 {1, 2, 3},

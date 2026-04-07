@@ -5,7 +5,7 @@
 // after rotation, the array should look like this
 // [104,105,106,101,102,103]
 
-public class RotatingArray {
+public class SIT_104 {
     public static void main(String[] args) {
         int[] arr = {101,102,103,104,105,106};
         int k = 3;

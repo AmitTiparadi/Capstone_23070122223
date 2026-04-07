@@ -34,5 +34,5 @@ class Manager implements EmailNotification, SMSNotification {
 }
 
 
-public class Third {
+public class SIT_103 {
 }

@@ -22,7 +22,7 @@ class SmartDevice implements DeviceA, DeviceB{
     }
 }
 
-public class First {
+public class SIT_101 {
     public static void main(String[] args) {
         SmartDevice device = new SmartDevice();
         device.turnOn();
