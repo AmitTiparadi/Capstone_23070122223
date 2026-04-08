@@ -11,6 +11,9 @@ class Order{
         this.amount=amount;
         this.deliveryTime=deliveryTime;
     }
+    public String toString(){
+        return "{" + "orderId=" + orderId + ", customerType='" + customerType + '\'' + ", amount=" + amount + ", deliveryTime=" + deliveryTime + '}';
+    }
 }
 
 public class SIT_203 {
@@ -40,7 +43,7 @@ public class SIT_203 {
         int i = 0, j = 0, k = left;
 
         while (i < n1 && j < n2) {
-            if (leftArr[i].amount <= rightArr[j].amount) {
+            if (compareOrders(leftArr[i], rightArr[j]) <= 0) {
                 orders[k++] = leftArr[i++];
             } else {
                 orders[k++] = rightArr[j++];
@@ -67,6 +70,19 @@ public class SIT_203 {
 
         mergerSort(orders, 0, orders.length - 1);
 
+    }
+
+    static int compareOrders(Order o1, Order o2) {
+        if(!o1.customerType.equals(o2.customerType)){
+            return o1.customerType.equals("Prime") ? -1 : 1; // Prime orders come first
+        }
+        if(o1.amount != o2.amount){
+            return Double.compare(o1.amount, o2.amount); // Sort by order ID if customer type is the same
+        }
+        if(o1.deliveryTime != o2.deliveryTime){
+            return Double.compare(o1.deliveryTime, o2.deliveryTime); // Sort by delivery time if amount is the same
+        }
+        return 0;
     }
 
 }
