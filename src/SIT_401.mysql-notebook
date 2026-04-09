@@ -1,0 +1,255 @@
+{
+    "type": "MySQLNotebook",
+    "version": "1.0",
+    "caption": "Script",
+    "content": "show databases;\n\n-- Schema design: DesignDB for instagram\n-- (ER Diagram & Normalization)\n\ncreate database instaSIT;\nuse instaSIT;\n\ncreate table users(\n    user_id int auto_increment primary key,\n    username varchar(50) unique not null,\n    email varchar(100) unique not null,\n    password varchar(100),\n    bio text,\n    created_at timestamp default current_timestamp\n);\n\ncreate table posts(\n    post_id int auto_increment primary key,\n    user_id int,\n    caption text,\n    media_url varchar(225),\n    created_at timestamp default current_timestamp,\n    foreign key(user_id) references users(user_id)\n);\n\ncreate table likes(\n    like_id int auto_increment primary key,\n    user_id int,\n    post_id int,\n    created_at timestamp default current_timestamp,\n    unique(user_id, post_id),\n    foreign key(user_id) references users(user_id),\n    foreign key(post_id) references posts(post_id)\n);\n\ncreate table comments(\n    comment_id int auto_increment primary key,\n    user_id int, \n    post_id int, \n    text text,\n    created_at timestamp default current_timestamp,\n    foreign key(user_id) references users(user_id),\n    foreign key(post_id) references posts(post_id)\n);\n\ncreate table follows(\n    follower_id int,\n    following_id int,\n    created_at timestamp default current_timestamp,\n    primary key(follower_id, following_id),\n    foreign key(follower_id) references users(user_id),\n    foreign key(following_id) references users(user_id)\n);\n\ninsert into users(username, email, password, bio) values\n('onkar', 'onkarholkar@gmail.com', '12345', 'AI Dev'),\n('faheem', 'faheem@gmail.com', '67890', 'Software Engineer'),\n('Shubham', 'shubham@gmail.com', '3fds', 'AI Eng'),\n('yash', 'yash@gmail.com', '4567', 'DS'),\n('Sujit', 'sujit@bmc.com', 'bmcforlife', 'FSD');\n\ninsert into posts(user_id, caption, media_url) values\n(1, 'my first post', 'img1.jpeg'),\n(2, 'my home', 'img2.jpeg'),\n(3, 'my office', 'img3.jpeg'),\n(4, 'trek post', 'imag4.jpeg');\n\ninsert into follows(follower_id, following_id) values\n(1, 2),       -- onkar follows faheem\n(1, 3),       -- onkar follows shubham\n(2, 3),       -- faheem follows shubham\n(4, 5),       -- yash follows sujit\n(5, 4);       -- sujit follows yash\n\ninsert into likes(user_id, post_id) values\n(1, 2),       -- onkar likes faheem's post\n(1, 3),       -- onkar likes shubham's post\n(2, 1),       -- faheem likes onkar's post\n(3, 4),       -- shubham likes yash's post\n(5, 4);       -- sujit likes yash's post\n\ninsert into comments(user_id, post_id, text) values\n(1, 2, 'nice post'),\n(2, 1, 'great'),\n(3, 2, 'good look'),\n(5, 4, 'fire');\n\n-- ----------------------------------------------------------\n\n-- Real time operations\n\n-- Q1) Shows posts of people onkar follows",
+    "options": {
+        "tabSize": 4,
+        "insertSpaces": true,
+        "indentSize": 4,
+        "defaultEOL": "CRLF",
+        "trimAutoWhitespace": true
+    },
+    "viewState": {
+        "cursorState": [
+            {
+                "inSelectionMode": false,
+                "selectionStart": {
+                    "lineNumber": 1,
+                    "column": 1
+                },
+                "position": {
+                    "lineNumber": 1,
+                    "column": 1
+                }
+            }
+        ],
+        "viewState": {
+            "scrollLeft": 0,
+            "firstPosition": {
+                "lineNumber": 36,
+                "column": 1
+            },
+            "firstPositionDeltaTop": -12
+        },
+        "contributionsState": {
+            "editor.contrib.folding": {},
+            "editor.contrib.wordHighlighter": false
+        }
+    },
+    "contexts": [
+        {
+            "state": {
+                "start": 1,
+                "end": 93,
+                "language": "mysql",
+                "result": {
+                    "type": "resultIds",
+                    "list": [
+                        "2a2add98-282b-4a7f-df77-1b742d4963a6"
+                    ]
+                },
+                "currentHeight": 300,
+                "currentSet": 1,
+                "statements": [
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 0,
+                            "length": 15
+                        },
+                        "contentStart": 0,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 15,
+                            "length": 101
+                        },
+                        "contentStart": 91,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 116,
+                            "length": 14
+                        },
+                        "contentStart": 117,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 130,
+                            "length": 242
+                        },
+                        "contentStart": 132,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 372,
+                            "length": 234
+                        },
+                        "contentStart": 374,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 606,
+                            "length": 287
+                        },
+                        "contentStart": 608,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 893,
+                            "length": 280
+                        },
+                        "contentStart": 895,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 1173,
+                            "length": 277
+                        },
+                        "contentStart": 1175,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 1450,
+                            "length": 318
+                        },
+                        "contentStart": 1452,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 1768,
+                            "length": 182
+                        },
+                        "contentStart": 1770,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 1950,
+                            "length": 216
+                        },
+                        "contentStart": 1952,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 2166,
+                            "length": 253
+                        },
+                        "contentStart": 2196,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 2419,
+                            "length": 161
+                        },
+                        "contentStart": 2454,
+                        "state": 0
+                    },
+                    {
+                        "delimiter": ";",
+                        "span": {
+                            "start": 2580,
+                            "length": 132
+                        },
+                        "contentStart": 2580,
+                        "state": 1
+                    }
+                ]
+            },
+            "data": [
+                {
+                    "tabId": "ef8ad202-3e67-4de3-f2b4-5f79caf33260",
+                    "resultId": "2a2add98-282b-4a7f-df77-1b742d4963a6",
+                    "rows": [
+                        {
+                            "0": "dbms"
+                        },
+                        {
+                            "0": "information_schema"
+                        },
+                        {
+                            "0": "librabry"
+                        },
+                        {
+                            "0": "library"
+                        },
+                        {
+                            "0": "librarymanagement"
+                        },
+                        {
+                            "0": "lnt"
+                        },
+                        {
+                            "0": "metromanagement"
+                        },
+                        {
+                            "0": "mysql"
+                        },
+                        {
+                            "0": "performance_schema"
+                        },
+                        {
+                            "0": "student"
+                        },
+                        {
+                            "0": "sys"
+                        }
+                    ],
+                    "columns": [
+                        {
+                            "title": "Database",
+                            "field": "0",
+                            "dataType": {
+                                "type": 17,
+                                "characterMaximumLength": 65535,
+                                "flags": [
+                                    "BINARY",
+                                    "ASCII",
+                                    "UNICODE"
+                                ],
+                                "needsQuotes": true,
+                                "parameterFormatType": "OneOrZero"
+                            },
+                            "inPK": false,
+                            "nullable": false,
+                            "autoIncrement": false
+                        }
+                    ],
+                    "executionInfo": {
+                        "text": "OK, 11 records retrieved in 1.461ms"
+                    },
+                    "totalRowCount": 11,
+                    "hasMoreRows": false,
+                    "currentPage": 0,
+                    "index": 0,
+                    "sql": "show databases",
+                    "updatable": false
+                }
+            ]
+        }
+    ]
+}
